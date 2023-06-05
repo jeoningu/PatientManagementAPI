@@ -1,22 +1,20 @@
 package com.example.patientmanagementapi.hospital.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 /**
  * 병원
  */
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hospital_id", nullable = false)
-    private Hospital hospital;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id", nullable = false)
-    private Hospital patient;
+    private Long id; // 병원ID
     @Column(length = 45, nullable = false)
     private String hospitalName; // 병원명
     @Column(length = 20, nullable = false)
@@ -24,6 +22,17 @@ public class Hospital {
     @Column(length = 10, nullable = false)
     private String hospitalHeadName; // 병원장명
 
+    @Builder
+    public Hospital(String hospitalName, String nursingHomeNo, String hospitalHeadName) {
+        this.hospitalName = hospitalHeadName;
+        this.nursingHomeNo = nursingHomeNo;
+        this.hospitalHeadName = hospitalHeadName;
+    }
 
+    public void update(String hospitalName, String nursingHomeNo, String hospitalHeadName) {
+        this.hospitalName = hospitalHeadName;
+        this.nursingHomeNo = nursingHomeNo;
+        this.hospitalHeadName = hospitalHeadName;
+    }
 
 }

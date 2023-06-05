@@ -1,6 +1,6 @@
-package com.example.patientmanagementapi.common.typeConverter;
+package com.example.patientmanagementapi.common.enumTypeConverter;
 
-import com.example.patientmanagementapi.common.typeConverter.common.DbCodeCommonType;
+import com.example.patientmanagementapi.common.enumTypeConverter.common.DbCodeCommonType;
 import lombok.Getter;
 
 /**

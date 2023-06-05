@@ -1,4 +1,4 @@
-package com.example.patientmanagementapi.common.typeConverter.common;
+package com.example.patientmanagementapi.common.enumTypeConverter.common;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
