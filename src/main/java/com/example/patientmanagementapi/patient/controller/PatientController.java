@@ -1,17 +1,19 @@
 package com.example.patientmanagementapi.patient.controller;
 
-import com.example.patientmanagementapi.hospital.service.HospitalService;
 import com.example.patientmanagementapi.patient.controller.dto.request.PatientCreateRequest;
 import com.example.patientmanagementapi.patient.controller.dto.request.PatientUpdateRequest;
+import com.example.patientmanagementapi.patient.controller.dto.response.PatientFindAllResponse;
 import com.example.patientmanagementapi.patient.controller.dto.response.PatientResponse;
 import com.example.patientmanagementapi.patient.service.PatientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/patient")
@@ -31,8 +33,14 @@ public class PatientController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PatientResponse>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(patientService.findAll());
+    public ResponseEntity<Page<PatientFindAllResponse>> findAll(
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(required = false) String patientName,
+            @RequestParam(required = false) String patientNo,
+            @RequestParam(required = false) String birth) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return ResponseEntity.status(HttpStatus.OK).body(patientService.findAll(pageable, patientName, patientNo, birth));
     }
 
     @PutMapping("/{id}")

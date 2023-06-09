@@ -1,8 +1,16 @@
+////querydsl 추가
+//buildscript {
+//    dependencies {
+//        classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10")
+//    }
+//}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.12'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'org.asciidoctor.jvm.convert' version '3.3.2' // gradle 7 버전 이후에 적용해야 하는 plugin
+    id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10' // querydsl 사용을 위해 추가된 항목
 }
 
 group = 'com.example'
@@ -71,6 +79,42 @@ build {
 }
 /******* End Spring Rest Docs *******/
 
+/******* Start querydsl *******/
+def querydslDir = 'src/main/generated'
+// JPA 사용 여부와 사용할 경로를 설정
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+// build 시 사용할 sourceSet 추가
+sourceSets {
+    main.java.srcDir querydslDir
+}
+// querydsl 이 compileClassPath 를 상속하도록 설정
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+// querydsl 컴파일시 사용할 옵션 설정
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+//task generateQueryDSL(type: JavaCompile, group: 'build') {
+//    source = sourceSets.main.java
+//    classpath = configurations.compile
+//    options.compilerArgs = [
+//            "-proc:only",
+//            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
+//    ]
+//    destinationDir = file('./src/main/generated')
+//}
+
+/******* end querydsl *******/
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -79,6 +123,14 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // spring restdocs
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc' // MockMvc를 restdocs에 사용할 수 있게 해주는 라이브러리 입니다.
     //asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor' // build/generated-snippets 에 생긴 .adoc 조각들을 프로젝트 내의 .adoc 파일에서 읽어들일 수 있도록 연동
+
+    // queryDSL
+    implementation 'com.querydsl:querydsl-jpa'
+    annotationProcessor "com.querydsl:querydsl-apt"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 }

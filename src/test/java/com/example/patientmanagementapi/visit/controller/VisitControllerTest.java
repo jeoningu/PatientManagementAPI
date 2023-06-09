@@ -47,7 +47,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureRestDocs // Rest docs 자동 설정
 class VisitControllerTest {
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -129,12 +130,12 @@ class VisitControllerTest {
     @Test
     @DisplayName("환자방문 전체 조회")
     void findAll() throws Exception {
-        final List<VisitResponse> patientResponseList = Lists.newArrayList(
+        final List<VisitResponse> visitResponseList = Lists.newArrayList(
                 new VisitResponse(1L, 1L, 1L, LocalDateTime.parse("2023-06-09 12:00:00", DATE_TIME_FORMATTER), "1"),
                 new VisitResponse(2L, 2L, 1L, LocalDateTime.parse("2023-06-09 12:01:03", DATE_TIME_FORMATTER), "2"),
                 new VisitResponse(3L, 3L, 1L, LocalDateTime.parse("2023-06-09 12:05:00", DATE_TIME_FORMATTER), "3")
         );
-        when(visitService.findAll()).thenReturn(patientResponseList);
+        when(visitService.findAll()).thenReturn(visitResponseList);
 
         this.mockMvc.perform(RestDocumentationRequestBuilders.get("/visit")
                         .accept(MediaType.APPLICATION_JSON))

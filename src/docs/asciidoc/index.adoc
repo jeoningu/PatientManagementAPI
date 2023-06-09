@@ -77,6 +77,7 @@ include::{snippets}/patient-findById/response-fields.adoc[]
 === 'GET /patient ' : 환자 전체 조회
 ===== REQUEST
 include::{snippets}/patient-findAll/http-request.adoc[]
+include::{snippets}/patient-findAll/request-parameters.adoc[]
 ===== RESPONSE
 include::{snippets}/patient-findAll/http-response.adoc[]
 include::{snippets}/patient-findAll/response-fields.adoc[]

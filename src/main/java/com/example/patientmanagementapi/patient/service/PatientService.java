@@ -4,17 +4,18 @@ import com.example.patientmanagementapi.hospital.domain.Hospital;
 import com.example.patientmanagementapi.hospital.repository.HospitalRepository;
 import com.example.patientmanagementapi.patient.controller.dto.request.PatientCreateRequest;
 import com.example.patientmanagementapi.patient.controller.dto.request.PatientUpdateRequest;
+import com.example.patientmanagementapi.patient.controller.dto.response.PatientFindAllResponse;
 import com.example.patientmanagementapi.patient.controller.dto.response.PatientResponse;
 import com.example.patientmanagementapi.patient.domain.Patient;
 import com.example.patientmanagementapi.patient.repository.PatientRepository;
 import com.example.patientmanagementapi.visit.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -51,15 +52,13 @@ public class PatientService {
 
     @Transactional(readOnly = true)
     public PatientResponse findById(Long id) {
-        Patient entity = patientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 환자가 없습니다. id = " + id));
+        Patient entity = patientRepository.findWithVisitsById(id).orElseThrow(() -> new IllegalArgumentException("해당 환자가 없습니다. id = " + id));
         return new PatientResponse(entity);
     }
 
     @Transactional(readOnly = true)
-    public List<PatientResponse> findAll() {
-        return patientRepository.findAll().stream()
-                .map(PatientResponse::new)
-                .collect(Collectors.toList());
+    public Page<PatientFindAllResponse> findAll(Pageable pageable, String patientName, String patientNo, String birth) {
+        return patientRepository.findBySearchOption(pageable, patientName, patientNo, birth);
     }
 
     @Transactional
