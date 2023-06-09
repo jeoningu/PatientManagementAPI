@@ -1,5 +1,34 @@
 # 환자 관리 API
 
+### 프로젝트 실행 방법
+1. H2DB 실행
+   1. h2db 처음 DB 생성 및 연결
+      - Saved Settings: : Generic H2 (Server)
+      - Driver Class : org.h2.Driver
+      - JDBC URL : jdbc:h2:~/PatientManagementDB
+      - User Name: sa
+
+   2. DB 생성 이후부터 h2db 접속 
+       - Saved Settings: : Generic H2 (Embedded)
+       - Driver Class : org.h2.Driver
+       - JDBC URL : jdbc:h2:tcp://localhost/~/PatientManagementDB
+       - User Name: sa
+       - 
+2. 프로젝트 실행
+
+
+### restdocs 문서 확인 방법
+1. restdocs 문서 확인 방법
+   1. application run
+   2. http://localhost:8080/docs/index.html 접속
+
+2. restdocs 문서 생성 방법
+   1. 테스트코드 run : 테스트가 통과되면 './build/generated-snippets'에 .adoc 파일 생성됨
+   2. gradle build : '/src/docs/asciidocs/index.adoc' 파일의 설정대로 'src/main/resources/static/docs'에 index.html 생성됨
+   3. application run
+   4. http://localhost:8080/docs/index.html 접속
+
+
 ### 기술 스택
 
 - java 8

@@ -1,0 +1,145 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= API 문서
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+
+
+== hospital
+=== 'POST /hospital ' : 병원 추가
+===== REQUEST
+include::{snippets}/hospital-create/http-request.adoc[]
+include::{snippets}/hospital-create/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/hospital-create/http-response.adoc[]
+include::{snippets}/hospital-create/response-fields.adoc[]
+
+
+=== 'GET /hospital/{id}' : 병원 단건 조회
+===== REQUEST
+include::{snippets}/hospital-findById/http-request.adoc[]
+include::{snippets}/hospital-findById/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/hospital-findById/http-response.adoc[]
+include::{snippets}/hospital-findById/response-fields.adoc[]
+
+
+=== 'GET /hospital ' : 병원 전체 조회
+===== REQUEST
+include::{snippets}/hospital-findAll/http-request.adoc[]
+===== RESPONSE
+include::{snippets}/hospital-findAll/http-response.adoc[]
+include::{snippets}/hospital-findAll/response-fields.adoc[]
+
+
+=== 'PUT /hospital/{id}' : 병원 수정
+===== REQUEST
+include::{snippets}/hospital-update/http-request.adoc[]
+include::{snippets}/hospital-update/path-parameters.adoc[]
+include::{snippets}/hospital-update/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/hospital-update/http-response.adoc[]
+include::{snippets}/hospital-update/response-fields.adoc[]
+
+
+=== 'DELETE /hospital/{id}' : 병원 삭제
+===== REQUEST
+include::{snippets}/hospital-delete/http-request.adoc[]
+include::{snippets}/hospital-delete/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/hospital-delete/http-response.adoc[]
+
+
+== patient
+=== 'POST /patient ' : 환자 추가
+===== REQUEST
+include::{snippets}/patient-create/http-request.adoc[]
+include::{snippets}/patient-create/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/patient-create/http-response.adoc[]
+include::{snippets}/patient-create/response-fields.adoc[]
+
+
+=== 'GET /patient/{id}' : 환자 단건 조회
+===== REQUEST
+include::{snippets}/patient-findById/http-request.adoc[]
+include::{snippets}/patient-findById/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/patient-findById/http-response.adoc[]
+include::{snippets}/patient-findById/response-fields.adoc[]
+
+
+=== 'GET /patient ' : 환자 전체 조회
+===== REQUEST
+include::{snippets}/patient-findAll/http-request.adoc[]
+===== RESPONSE
+include::{snippets}/patient-findAll/http-response.adoc[]
+include::{snippets}/patient-findAll/response-fields.adoc[]
+
+
+=== 'PUT /patient/{id}' : 환자 수정
+===== REQUEST
+include::{snippets}/patient-update/http-request.adoc[]
+include::{snippets}/patient-update/path-parameters.adoc[]
+include::{snippets}/patient-update/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/patient-update/http-response.adoc[]
+include::{snippets}/patient-update/response-fields.adoc[]
+
+
+=== 'DELETE /patient/{id}' : 환자 삭제
+===== REQUEST
+include::{snippets}/patient-delete/http-request.adoc[]
+include::{snippets}/patient-delete/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/patient-delete/http-response.adoc[]
+
+
+== visit
+=== 'POST /visit ' : 환자방문 추가
+===== REQUEST
+include::{snippets}/visit-create/http-request.adoc[]
+include::{snippets}/visit-create/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/visit-create/http-response.adoc[]
+include::{snippets}/visit-create/response-fields.adoc[]
+
+
+=== 'GET /visit/{id}' : 환자방문 단건 조회
+===== REQUEST
+include::{snippets}/visit-findById/http-request.adoc[]
+include::{snippets}/visit-findById/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/visit-findById/http-response.adoc[]
+include::{snippets}/visit-findById/response-fields.adoc[]
+
+
+=== 'GET /visit ' : 환자방문 전체 조회
+===== REQUEST
+include::{snippets}/visit-findAll/http-request.adoc[]
+===== RESPONSE
+include::{snippets}/visit-findAll/http-response.adoc[]
+include::{snippets}/visit-findAll/response-fields.adoc[]
+
+
+=== 'PUT /visit/{id}' : 환자방문 수정
+===== REQUEST
+include::{snippets}/visit-update/http-request.adoc[]
+include::{snippets}/visit-update/path-parameters.adoc[]
+include::{snippets}/visit-update/request-fields.adoc[]
+===== RESPONSE
+include::{snippets}/visit-update/http-response.adoc[]
+include::{snippets}/visit-update/response-fields.adoc[]
+
+
+=== 'DELETE /visit/{id}' : 환자방문 삭제
+===== REQUEST
+include::{snippets}/visit-delete/http-request.adoc[]
+include::{snippets}/visit-delete/path-parameters.adoc[]
+===== RESPONSE
+include::{snippets}/visit-delete/http-response.adoc[]

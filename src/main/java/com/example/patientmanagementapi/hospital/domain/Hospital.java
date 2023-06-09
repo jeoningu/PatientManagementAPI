@@ -1,8 +1,12 @@
 package com.example.patientmanagementapi.hospital.domain;
 
+import com.example.patientmanagementapi.patient.domain.Patient;
+import com.example.patientmanagementapi.visit.domain.Visit;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 병원
@@ -15,6 +19,11 @@ public class Hospital {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id; // 병원ID
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Patient> patientList = new ArrayList<>();
+    @OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Visit> visitList = new ArrayList<>();
+
     @Column(length = 45, nullable = false)
     private String hospitalName; // 병원명
     @Column(length = 20, nullable = false)
