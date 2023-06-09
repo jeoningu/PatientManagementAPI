@@ -25,7 +25,7 @@ public class DbCodeEnumValueConverterUtils {
         return EnumSet.allOf(enumClass).stream()
                 .filter(e -> e.getCode().equals(dbCode))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("enum=[%s]에 legacyCode=[%s]가 존재하지 않습니다.",
+                .orElseThrow(() -> new IllegalArgumentException(String.format("enum=[%s]에 Code=[%s]가 존재하지 않습니다.",
                         enumClass.getName(), dbCode)));
     }
 

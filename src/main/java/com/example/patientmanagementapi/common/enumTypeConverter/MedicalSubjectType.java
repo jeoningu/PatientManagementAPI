@@ -3,6 +3,8 @@ package com.example.patientmanagementapi.common.enumTypeConverter;
 import com.example.patientmanagementapi.common.enumTypeConverter.common.DbCodeCommonType;
 import lombok.Getter;
 
+import java.util.Arrays;
+
 /**
  * 진료과목, 진료과목(내과, 안과 등)
  */
@@ -27,5 +29,13 @@ public enum MedicalSubjectType implements DbCodeCommonType {
     @Override
     public String getCode() {
         return this.code;
+    }
+
+    public static MedicalSubjectType valueOfCode(String code) {
+        return Arrays.stream(values())
+                .filter(value -> value.code.equals(code))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("enum=[%s]에 code=[%s]가 존재하지 않습니다.",
+                        "MedicalSubjectType", code)));
     }
 }
