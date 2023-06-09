@@ -69,11 +69,11 @@ class PatientControllerTest {
                 .hospitalId("1")
                 .patientName("환자1")
                 .genderType("M")
-                .birth("19990101")
-                .phone("01012341234")
+                .birth("1999-01-01")
+                .phone("010-1234-1234")
                 .build();
 
-        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "19990101", "01012341234");
+        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "1999-01-01", "010-1234-1234");
         when(patientService.create(any(PatientCreateRequest.class))).thenReturn(patientResponse);
 
         String requestJson = objectMapper.writeValueAsString(patientCreateRequest);
@@ -88,8 +88,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호 (000-0000-0000)")
                         ),
                         PayloadDocumentation.responseFields(
                                 PayloadDocumentation.fieldWithPath("id").description("환자ID"),
@@ -97,8 +97,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호 (000-0000-0000)")
                         )
                 ));
     }
@@ -106,7 +106,7 @@ class PatientControllerTest {
     @Test
     @DisplayName("환자 단건 조회")
     void findById() throws Exception {
-        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "19990101", "01012341234");
+        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "1999-01-01", "010-1234-1234");
         when(patientService.findById(anyLong())).thenReturn(patientResponse);
 
         this.mockMvc.perform(get("/patient/{id}", 1L)
@@ -123,8 +123,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호 (000-0000-0000)")
                         )
                 ));
     }
@@ -133,9 +133,9 @@ class PatientControllerTest {
     @DisplayName("환자 전체 조회")
     void findAll() throws Exception {
         final List<PatientResponse> patientResponseList = Lists.newArrayList(
-                new PatientResponse(1L, 1L, "환자1", "1", "M", "19990101", "01012341234"),
-                new PatientResponse(2L, 1L, "환자2", "1", "F", "19990102", "01012341236"),
-                new PatientResponse(3L, 1L, "환자3", "1", "H", "19990104", "01012341236")
+                new PatientResponse(1L, 1L, "환자1", "1", "M", "1999-01-01", "010-1234-1234"),
+                new PatientResponse(2L, 1L, "환자2", "1", "F", "1999-01-02", "010-1234-1234"),
+                new PatientResponse(3L, 1L, "환자3", "1", "H", "1999-01-04", "010-1234-1234")
         );
         when(patientService.findAll()).thenReturn(patientResponseList);
 
@@ -150,8 +150,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("[].patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("[].patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("[].genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("[].birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("[].phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("[].birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("[].phone").description("휴대전화번호 (000-0000-0000)")
                         )
                 ));
     }
@@ -163,10 +163,10 @@ class PatientControllerTest {
                 .hospitalId("1")
                 .patientName("환자1")
                 .genderType("M")
-                .birth("19990101")
-                .phone("01012341234")
+                .birth("1999-01-01")
+                .phone("010-1234-1234")
                 .build();
-        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "19990101", "01012341234");
+        final PatientResponse patientResponse = new PatientResponse(1L, 1L, "환자1", "1", "M", "1999-01-01", "010-1234-1234");
         when(patientService.update(anyLong(),any(PatientUpdateRequest.class))).thenReturn(patientResponse);
 
         String requestJson = objectMapper.writeValueAsString(patientUpdateRequest);
@@ -184,8 +184,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호 (000-0000-0000)")
                         ),
                         PayloadDocumentation.responseFields(
                                 PayloadDocumentation.fieldWithPath("id").description("환자ID"),
@@ -193,8 +193,8 @@ class PatientControllerTest {
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
                                 PayloadDocumentation.fieldWithPath("patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
-                                PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
-                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
+                                PayloadDocumentation.fieldWithPath("birth").description("생년월일 (yyyy-MM-dd)"),
+                                PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호 (000-0000-0000)")
                         )
                 ));
     }

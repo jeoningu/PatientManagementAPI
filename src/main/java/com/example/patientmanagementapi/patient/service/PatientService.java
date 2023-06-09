@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,14 +36,17 @@ public class PatientService {
 
     /**
      * 환자등록번호는 병원별로 중복되지 않도록 서버에서 생성
+     * 년도+5자리
      * @param hospital
      * @return
      */
     private synchronized String generateUniquePatientNo(Hospital hospital) {
         String maxPatientNo = patientRepository.findMaxPatientNoByHospital(hospital);
-        int nextSequenceNumber = maxPatientNo != null ? Integer.parseInt(maxPatientNo) + 1 : 1;
+        int nextSequenceNumber = maxPatientNo != null ? Integer.parseInt(maxPatientNo.substring(4)) + 1 : 1;
+        String sequenceNumber = String.format("%05d", nextSequenceNumber);
+        String currentYear = String.valueOf(LocalDate.now().getYear());
 
-        return String.valueOf(nextSequenceNumber);
+        return currentYear + sequenceNumber;
     }
 
     @Transactional(readOnly = true)

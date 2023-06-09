@@ -89,14 +89,14 @@ class VisitControllerTest {
                         PayloadDocumentation.requestFields(
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시 (yyyy-MM-dd HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         ),
                         PayloadDocumentation.responseFields(
                                 PayloadDocumentation.fieldWithPath("id").description("환자방문ID"),
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시 (yyyy-MM-dd'T'HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         )
                 ));
@@ -120,7 +120,7 @@ class VisitControllerTest {
                                 PayloadDocumentation.fieldWithPath("id").description("환자방문ID"),
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시 (yyyy-MM-dd'T'HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         )
                 ));
@@ -145,7 +145,7 @@ class VisitControllerTest {
                                 PayloadDocumentation.fieldWithPath("[]id").description("환자방문ID"),
                                 PayloadDocumentation.fieldWithPath("[]hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("[]patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("[]receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("[]receptionDate").description("접수일시 (yyyy-MM-dd'T'HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("[]visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         )
                 ));
@@ -178,14 +178,14 @@ class VisitControllerTest {
                         PayloadDocumentation.requestFields(
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시 (yyyy-MM-dd HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         ),
                         PayloadDocumentation.responseFields(
                                 PayloadDocumentation.fieldWithPath("id").description("환자방문ID"),
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientId").description("환자ID"),
-                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시"),
+                                PayloadDocumentation.fieldWithPath("receptionDate").description("접수일시 (yyyy-MM-dd'T'HH:mm:ss)"),
                                 PayloadDocumentation.fieldWithPath("visitStatusType").description("방문상태코드 (1: 방문중 | 2:종료 | 3:취소)")
                         )
                 ));
