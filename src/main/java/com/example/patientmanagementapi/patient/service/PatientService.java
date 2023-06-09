@@ -26,8 +26,23 @@ public class PatientService {
     @Transactional
     public PatientResponse create(PatientCreateRequest request) {
         Hospital hospital = hospitalRepository.findById(Long.parseLong(request.getHospitalId())).orElseThrow(() -> new IllegalArgumentException("해당 병원이 없습니다. id = " + request.getHospitalId()));
-        Patient savedPatient = patientRepository.save(request.toEntity(hospital));
+
+        String patientNo = generateUniquePatientNo(hospital);
+
+        Patient savedPatient = patientRepository.save(request.toEntity(hospital, patientNo));
         return new PatientResponse(savedPatient);
+    }
+
+    /**
+     * 환자등록번호는 병원별로 중복되지 않도록 서버에서 생성
+     * @param hospital
+     * @return
+     */
+    private synchronized String generateUniquePatientNo(Hospital hospital) {
+        String maxPatientNo = patientRepository.findMaxPatientNoByHospital(hospital);
+        int nextSequenceNumber = maxPatientNo != null ? Integer.parseInt(maxPatientNo) + 1 : 1;
+
+        return String.valueOf(nextSequenceNumber);
     }
 
     @Transactional(readOnly = true)
@@ -47,7 +62,7 @@ public class PatientService {
     public PatientResponse update(Long id, PatientUpdateRequest request) {
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 환자가 없습니다. id = " + id));
         Hospital hospital = hospitalRepository.findById(Long.parseLong(request.getHospitalId())).orElseThrow(() -> new IllegalArgumentException("해당 병원이 없습니다. id = " + request.getHospitalId()));
-        patient.update(hospital, request.getPatientName(), request.getPatientNo(), request.getGenderType(), request.getBirth(), request.getPhone());
+        patient.update(hospital, request.getPatientName(), request.getGenderType(), request.getBirth(), request.getPhone());
         return new PatientResponse(patient);
     }
 

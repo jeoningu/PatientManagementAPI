@@ -50,10 +50,9 @@ public class Patient {
         this.phone = phone;
     }
 
-    public void update(Hospital hospital, String patientName, String patientNo, String genderType, String birth, String phone) {
+    public void update(Hospital hospital, String patientName, String genderType, String birth, String phone) {
         this.hospital = hospital;
         this.patientName = patientName;
-        this.patientNo = patientNo;
         this.genderType = GenderType.valueOfCode(genderType);
         this.birth = birth;
         this.phone = phone;

@@ -22,9 +22,6 @@ public class PatientCreateRequest {
     @NotBlank(message = "patientName은 필수값입니다.")
     @Size(max = 45, message = "patientName은 최대값이 45입니다.")
     private String patientName; // 환자명
-    @NotBlank(message = "patientNo은 필수값입니다.")
-    @Size(max = 13, message = "patientNo은 최대값이 13입니다.")
-    private String patientNo; // 환자등록번호
     @NotBlank(message = "genderType은 필수값입니다.")
     @Size(max = 10, message = "genderType은 최대값이 10입니다.")
     @Pattern(regexp= "M|F|H", message = "올바른 형식의 genderType을 입력해주세요(M|F|H)")
@@ -34,7 +31,7 @@ public class PatientCreateRequest {
     @Size(max = 20, message = "phone은 최대값이 10입니다.")
     private String phone; // 휴대전화번호
 
-    public Patient toEntity(Hospital hospital) {
+    public Patient toEntity(Hospital hospital, String patientNo) {
         return Patient.builder()
                 .hospital(hospital)
                 .patientName(patientName)

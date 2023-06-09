@@ -68,7 +68,6 @@ class PatientControllerTest {
         final PatientCreateRequest patientCreateRequest = PatientCreateRequest.builder()
                 .hospitalId("1")
                 .patientName("환자1")
-                .patientNo("1")
                 .genderType("M")
                 .birth("19990101")
                 .phone("01012341234")
@@ -88,7 +87,6 @@ class PatientControllerTest {
                         PayloadDocumentation.requestFields(
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
-                                PayloadDocumentation.fieldWithPath("patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
                                 PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
                                 PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
@@ -164,7 +162,6 @@ class PatientControllerTest {
         final PatientUpdateRequest patientUpdateRequest = PatientUpdateRequest.builder()
                 .hospitalId("1")
                 .patientName("환자1")
-                .patientNo("1")
                 .genderType("M")
                 .birth("19990101")
                 .phone("01012341234")
@@ -186,7 +183,6 @@ class PatientControllerTest {
                         PayloadDocumentation.requestFields(
                                 PayloadDocumentation.fieldWithPath("hospitalId").description("병원ID"),
                                 PayloadDocumentation.fieldWithPath("patientName").description("환자명"),
-                                PayloadDocumentation.fieldWithPath("patientNo").description("환자등록번호"),
                                 PayloadDocumentation.fieldWithPath("genderType").description("성별 (M:남자 | F:여자 | H:모름)"),
                                 PayloadDocumentation.fieldWithPath("birth").description("생년월일"),
                                 PayloadDocumentation.fieldWithPath("phone").description("휴대전화번호")
